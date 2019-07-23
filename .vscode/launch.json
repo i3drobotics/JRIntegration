@@ -1,0 +1,102 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Phobos Live (BM)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/phobos/parameter_configs/disparity_BM.cfg",
+                "${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_left.yaml","${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_right.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Phobos Live (JR)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/phobos/parameter_configs/disparity_JR.cfg",
+                "${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_left.yaml","${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_right.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Phobos Image File (BM)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/phobos/parameter_configs/disparity_BM.cfg",
+                "${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_left.yaml","${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_right.yaml",
+                "${workspaceFolder}/examples/phobos/images/left_rect.png","${workspaceFolder}/examples/phobos/images/right_rect.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Phobos Image File (JR)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/phobos/parameter_configs/disparity_JR.cfg",
+                "${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_left.yaml","${workspaceFolder}/examples/phobos/calibration/phobos_nuclear_right.yaml",
+                "${workspaceFolder}/examples/phobos/images/left_rect.png","${workspaceFolder}/examples/phobos/images/right_rect.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
