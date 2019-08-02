@@ -125,9 +125,6 @@ std::string iniReader::processValue(std::string groupName, std::string varName, 
                         std::cout << "using default " << returnValIfEmpty << std::endl;
                         return returnValIfEmpty;
                     }
-                    else if (var.var == "None"){
-                        return nullptr;
-                    }
                     else
                     {
                         return var.val;

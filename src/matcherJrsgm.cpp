@@ -172,6 +172,7 @@ void MatcherJrSGM::readConfig(std::string &sConfigFile)
   params.strDebugOutput = settings->value("Parameter", "Debug Output Path", "./");
 
   params.oPyramidParams.resize(static_cast<size_t>(params.nNumberOfPyramids));
+  params.nJointMode = 0;
 
   for (int i = 0; i < params.nNumberOfPyramids; i++)
   {
