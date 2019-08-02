@@ -76,7 +76,7 @@ Mat stereo_match(Mat left_image, Mat right_image, int algorithm, int min_dispari
     return disp;
   }
 
-  disparity_range = disparity_range > 0 ? disparity_range : ((left_image.size().width / 8) + 15) & -16;
+  //disparity_range = disparity_range > 0 ? disparity_range : ((left_image.size().width / 8) + 15) & -16;
 
   if (algorithm == CV_StereoBM)
   {
@@ -179,8 +179,9 @@ cv::Mat_<uint8_t> rectify(cv::Mat image, CameraInfo cameraInfo)
 cv::Mat processDisparity(const cv::Mat &left_rect, const cv::Mat &right_rect)
 {
   cv::Mat disparity16 = stereo_match(left_rect, right_rect, _stereo_algorithm, _min_disparity, _disparity_range, _correlation_window_size, _uniqueness_ratio, _texture_threshold, _speckle_size, _speckle_range, _disp12MaxDiff, _p1, _p2, _interp);
-  normalize(disparity16, disparity16, 0, 255, NORM_MINMAX, CV_32FC1);
-  return disparity16;
+  cv::Mat disparity32f;
+  disparity16.convertTo(disparity32f, CV_32F);
+  return disparity32f;
 }
 
 void processImages(cv::Mat image_left, cv::Mat image_right, CameraInfoPair cameraInfoPair)
@@ -192,8 +193,13 @@ void processImages(cv::Mat image_left, cv::Mat image_right, CameraInfoPair camer
   cv::Mat disp = processDisparity(left_rect, right_rect);
 
   hconcat(left_rect, right_rect, frame_joint);
-  imshow("Deimos", frame_joint);
-  imshow("Disparity", disp);
+
+  Mat raw_disp_vis;
+  int vis_mult = 10;
+  cv::ximgproc::getDisparityVis(disp, raw_disp_vis, vis_mult);
+
+  imshow("Camera", frame_joint);
+  imshow("Disparity", raw_disp_vis);
 }
 
 void loadDisparityConfig(std::string disparity_config)
@@ -216,13 +222,12 @@ void loadDisparityConfig(std::string disparity_config)
   std::cout << "JR Config File: " << _jr_config_file << std::endl;
   if (_jr_config_file != "")
   {
-    if (!boost::filesystem::exists(disparity_config))
+    if (!boost::filesystem::exists(_jr_config_file))
     {
       std::cerr << "Invalid filename for jr config file" << std::endl;
       exit(EXIT_FAILURE);
     }
   }
-  
 }
 
 int fromImages(std::string left_camera_info_yaml_path, std::string right_camera_info_yaml_path, std::string left_image_fn, std::string right_image_fn)

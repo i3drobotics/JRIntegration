@@ -27,8 +27,8 @@ class iniReader {
         iniReader(std::string ini_file){
             init(ini_file);
         }
-        bool value(std::string groupName, std::string varName, bool returnValIfEmpty);
         std::string value(std::string groupName, std::string varName, std::string returnValIfEmpty);
+        bool value(std::string groupName, std::string varName, bool returnValIfEmpty);
         int value(std::string groupName, std::string varName, int returnValIfEmpty);
         float value(std::string groupName, std::string varName, float returnValIfEmpty);
         double value(std::string groupName, std::string varName, double returnValIfEmpty);

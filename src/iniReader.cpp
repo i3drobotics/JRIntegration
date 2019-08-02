@@ -84,7 +84,7 @@ iniReader::settings iniReader::extract_settings(std::string ini_file)
             std::string varVal = "";
             if (delimLoc + 2 < line.size())
             {
-                varVal = line.substr(delimLoc + 2, line.back());
+                varVal = line.substr(delimLoc + 2);
             }
             setVar.val = varVal;
             setVar.var = varName;
@@ -124,6 +124,9 @@ std::string iniReader::processValue(std::string groupName, std::string varName, 
                         std::cout << "variable '" << varName << "' in group '" << groupName << "' is empty ";
                         std::cout << "using default " << returnValIfEmpty << std::endl;
                         return returnValIfEmpty;
+                    }
+                    else if (var.var == "None"){
+                        return nullptr;
                     }
                     else
                     {

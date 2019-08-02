@@ -1,6 +1,6 @@
 # JR Integration
 
-Integration of JR algorithm with i3dr camera systems. 
+Integration of JR algorithm with i3dr camera systems.
 This is a simple program for trying out the process seperate from any other systems.
 
 ## Install

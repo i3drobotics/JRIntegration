@@ -324,6 +324,5 @@ void MatcherJrSGM::setConfig()
   {
     JR::Phobos::DestroyMatchStereoHandle(matcher_handle);
   }
-  JR::Phobos::TSTEREOHANDLE pH;
   matcher_handle = JR::Phobos::CreateMatchStereoHandle(params);
 }

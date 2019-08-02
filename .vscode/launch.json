@@ -97,6 +97,78 @@
                     "ignoreFailures": true
                 }
             ]
-        }
+        },
+        {
+            "name": "(gdb) Deimos Image File (BM)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/deimos/parameter_configs/disparity_BM.cfg",
+                "${workspaceFolder}/examples/deimos/calibration/cal2/left.yaml","${workspaceFolder}/examples/deimos/calibration/cal2/right.yaml",
+                "${workspaceFolder}/examples/deimos/images/rect/left_rect_1.png","${workspaceFolder}/examples/deimos/images/rect/right_rect_1.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Deimos Image File (SGBM)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/deimos/parameter_configs/disparity_SGBM.cfg",
+                "${workspaceFolder}/examples/deimos/calibration/cal2/left.yaml","${workspaceFolder}/examples/deimos/calibration/cal2/right.yaml",
+                "${workspaceFolder}/examples/deimos/images/rect/left_rect_1.png","${workspaceFolder}/examples/deimos/images/rect/right_rect_1.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Deimos Image File (JR)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/deimos/parameter_configs/disparity_JR.cfg",
+                "${workspaceFolder}/examples/deimos/calibration/cal2/left.yaml","${workspaceFolder}/examples/deimos/calibration/cal2/right.yaml",
+                "${workspaceFolder}/examples/deimos/images/rect/left_rect_1.png","${workspaceFolder}/examples/deimos/images/rect/right_rect_1.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
     ]
 }
