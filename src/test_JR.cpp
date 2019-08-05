@@ -114,8 +114,6 @@ Mat stereo_match(Mat left_image, Mat right_image, int algorithm, int min_dispari
     cv::Ptr<cv::StereoSGBM> sgbm = cv::StereoSGBM::create(64, 9);
 
     sgbm->setPreFilterCap(31);
-    //sgbm->setP1(1);
-    //sgbm->setP2(1);
     sgbm->setBlockSize(correlation_window_size > 0 ? correlation_window_size : 9);
     sgbm->setMinDisparity(min_disparity);
     sgbm->setNumDisparities(disparity_range);
@@ -150,6 +148,8 @@ Mat stereo_match(Mat left_image, Mat right_image, int algorithm, int min_dispari
     //matcher->setWindowSize(correlation_window_size);
     //matcher->enableInterpolation(interp);
 
+    //Jr matcher works with 32 bit float disparity
+    cv::Mat( image_size, CV_32FC1 ).copyTo( disp );
     matcher->compute(left_image, right_image, disp);
 
     if (backwardMatch)
