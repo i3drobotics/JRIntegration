@@ -26,7 +26,7 @@ int MatcherJrSGM::getErrorDisparity(void)
 }
 
 //compute disparity
-void MatcherJrSGM::compute(cv::Mat left_image, cv::Mat right_image, cv::Mat disp)
+void MatcherJrSGM::compute(cv::Mat left_image, cv::Mat right_image, cv::Mat &disp)
 {
   cv::Mat left_joint, right_joint;
   std::string sgm_log = "/home/i3dr/Desktop/sgm_log.txt";
@@ -48,7 +48,7 @@ void MatcherJrSGM::compute(cv::Mat left_image, cv::Mat right_image, cv::Mat disp
 }
 
 //backward match disparity
-void MatcherJrSGM::backwardMatch(cv::Mat left_image, cv::Mat right_image, cv::Mat disp)
+void MatcherJrSGM::backwardMatch(cv::Mat left_image, cv::Mat right_image, cv::Mat &disp)
 {
   cv::Mat left_joint, right_joint;
   std::string sgm_log = "./sgm_log.txt";
@@ -169,7 +169,7 @@ void MatcherJrSGM::readConfig(std::string &sConfigFile)
   params.fTopPredictionShift = settings->value("Parameter", "Top Prediction Shift", 0);
   params.nNumberOfMorphologicalIter = settings->value("Parameter", "Morphological Iterations", 0);
   params.nDebugLevel = settings->value("Parameter", "Debug Output Mode", 0);
-  params.strDebugOutput = settings->value("Parameter", "Debug Output Path", "./");
+  params.strDebugOutput = settings->value("Parameter", "Debug Output Path", "");
 
   params.oPyramidParams.resize(static_cast<size_t>(params.nNumberOfPyramids));
   params.nJointMode = 0;

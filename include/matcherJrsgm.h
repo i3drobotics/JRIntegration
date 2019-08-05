@@ -40,8 +40,8 @@ class MatcherJrSGM{
         bool getSubpixel(void){return params.oFinalSubPixelParameters.bCompute; }
         int getDisparityShift(void){return params.fTopPredictionShift * pow(2, params.nNumberOfPyramids-1) ; }
 
-        void compute(cv::Mat left_image, cv::Mat right_image, cv::Mat disp);
-        void backwardMatch(cv::Mat left_image, cv::Mat right_image, cv::Mat disp);
+        void compute(cv::Mat left_image, cv::Mat right_image, cv::Mat &disp);
+        void backwardMatch(cv::Mat left_image, cv::Mat right_image, cv::Mat &disp);
 
     private:
         JR::Phobos::TSTEREOHANDLE matcher_handle = nullptr;

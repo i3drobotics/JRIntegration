@@ -148,8 +148,6 @@ Mat stereo_match(Mat left_image, Mat right_image, int algorithm, int min_dispari
     //matcher->setWindowSize(correlation_window_size);
     //matcher->enableInterpolation(interp);
 
-    //Jr matcher works with 32 bit float disparity
-    cv::Mat( image_size, CV_32FC1 ).copyTo( disp );
     matcher->compute(left_image, right_image, disp);
 
     if (backwardMatch)
