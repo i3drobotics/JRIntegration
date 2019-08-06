@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 2.6)
 
-set (Phobos_ROOT_DIR "/usr/local/Phobos")
+#set (Phobos_ROOT_DIR "/usr/local/Phobos")
+set (Phobos_ROOT_DIR "C:\\Program Files\\JOANNEUM RESEARCH\\Phobos")
+set(OpenCV_DIR "D:\\openCV\\opencv-3.1.0\\build\\x64\\vc14\\bin")
 
+message(WARNING ${Phobos_ROOT_DIR})
+message(WARNING ${OpenCV_DIR})
 # OpenCV 3.4.6 Required for I3DR stereo algorithms
-find_package(OpenCV 3.4.6 REQUIRED)
+#SET("OpenCV_DIR" "D:/openCV/opencv-3.1.0/build/x64/vc14/bin")
+find_package(OpenCV 3.1.0 REQUIRED)
 
 find_path(PHOBOS_INCLUDE_DIR
     NAMES PhobosIntegration/PhobosIntegration.hpp
