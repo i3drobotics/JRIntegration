@@ -7,7 +7,11 @@ set(OpenCV_DIR "D:\\openCV\\opencv-3.1.0\\build\\x64\\vc14\\bin")
 message(WARNING ${Phobos_ROOT_DIR})
 message(WARNING ${OpenCV_DIR})
 # OpenCV 3.4.6 Required for I3DR stereo algorithms
+<<<<<<< HEAD:cmake/FindPhobos_backup.cmake
 #SET("OpenCV_DIR" "D:/openCV/opencv-3.1.0/build/x64/vc14/bin")
+=======
+#find_package(OpenCV 3.4.6 REQUIRED)
+>>>>>>> 9000ec0cb081b0baa13ef3d962f65bbe0b8759a9:cmake/FindPhobos.cmake
 find_package(OpenCV 3.1.0 REQUIRED)
 
 find_path(PHOBOS_INCLUDE_DIR
