@@ -22,6 +22,19 @@
             "problemMatcher": []
         },
         {
+            "label": "build_debug_mingw",
+            "type": "shell",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j4",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "build_release",
             "type": "shell",
             "command": "cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4",
@@ -36,8 +49,7 @@
             "command": "make clean",
             "options": {
                 "cwd": "${workspaceFolder}/build"
-            },
-            "problemMatcher": []
+            }
         }
     ]
 
