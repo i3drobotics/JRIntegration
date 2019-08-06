@@ -216,14 +216,17 @@ void loadDisparityConfig(std::string disparity_config)
   _p1 = settings->value("Disparity", "P1", 1.19);
   _p2 = settings->value("Disparity", "P2", 1.21);
   _interp = settings->value("Disparity", "Interpolation", false);
-  _jr_config_file = settings->value("Disparity", "JR Config File", (std::string)"/home/i3dr/JRIntegration/example/JR_config/JR_matchingparam_without_interpolation.cfg");
-  std::cout << "JR Config File: " << _jr_config_file << std::endl;
-  if (_jr_config_file != "")
-  {
-    if (!boost::filesystem::exists(_jr_config_file))
+  //only read jr config file if using jr stero matcher
+  if (_stereo_algorithm == 2){
+    _jr_config_file = settings->value("Disparity", "JR Config File", (std::string)"/home/i3dr/JRIntegration/example/JR_config/JR_matchingparam_without_interpolation.cfg");
+    std::cout << "JR Config File: " << _jr_config_file << std::endl;
+    if (_jr_config_file != "")
     {
-      std::cerr << "Invalid filename for jr config file" << std::endl;
-      exit(EXIT_FAILURE);
+      if (!boost::filesystem::exists(_jr_config_file))
+      {
+        std::cerr << "Invalid filename for jr config file" << std::endl;
+        exit(EXIT_FAILURE);
+      }
     }
   }
 }

@@ -36,7 +36,8 @@
             "command": "make clean",
             "options": {
                 "cwd": "${workspaceFolder}/build"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 

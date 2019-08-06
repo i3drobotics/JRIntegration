@@ -4,7 +4,8 @@
 void MatcherJrSGM::init(std::string &sConfigFile)
 {
   std::cout << sConfigFile << std::endl;
-  readConfig(sConfigFile);
+  //readConfig(sConfigFile);
+  JR::Phobos::ReadIniFile( params, sConfigFile );
 
   //set default values
   //enableInterpolation(false);
