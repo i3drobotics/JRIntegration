@@ -2,7 +2,7 @@
 #define MATCHERJRSGM_H
 
 #include <PhobosIntegration/PhobosIntegration.hpp>
-#include <iniReader.h>
+#include <iostream>
 
 class MatcherJrSGM{
     public:
@@ -19,8 +19,6 @@ class MatcherJrSGM{
         void parseConfig(std::string input_file);
         int getErrorDisparity();
 
-        void writeConfig(const std::string &sConfigFile);
-        void readConfig(std::string &sConfigFile);
         void setConfig();
 
         void setDisparityShift(int shift);
@@ -49,9 +47,6 @@ class MatcherJrSGM{
         int min_disparity, disparity_range;
 
         void init(std::string &sConfigFile);
-        void initParameters(int nPyramids, JR::Phobos::SSGMParameters sgm_params);
-        JR::Phobos::SMatchingParameters parsePyramid(iniReader *settings, std::string group);
-        JR::Phobos::SSGMParameters initSGMParameters();
 };
 
 #endif // MATCHERJRSGM_H

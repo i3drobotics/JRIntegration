@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 message(WARNING ${CMAKE_MODULE_PATH})
 find_package(Phobos REQUIRED)
 
-find_package(PCL 1.2 REQUIRED)
+#find_package(PCL 1.2 REQUIRED)
 
 include_directories(
 	include

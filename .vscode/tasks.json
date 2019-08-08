@@ -24,7 +24,7 @@
         {
             "label": "build_debug_mingw",
             "type": "shell",
-            "command": "cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j4",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -G \"MinGW Makefiles\" .. && mingw32-make -j4",
             "group": {
                 "kind": "build",
                 "isDefault": true

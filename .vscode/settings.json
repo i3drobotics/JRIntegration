@@ -48,5 +48,6 @@
         "iomanip": "cpp",
         "string": "cpp",
         "bitset": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

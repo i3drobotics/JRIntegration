@@ -20,7 +20,8 @@
                 "${workspaceFolder}/**",
                 "D:/pcl/PCL 1.8.1",
                 "${workspaceFolder}/include",
-                "C:/Program Files/JOANNEUM RESEARCH/Phobos/include"
+                "C:/Program Files/JOANNEUM RESEARCH/Phobos/include",
+                "D:/openCV/opencv-3.1.0/build/install/include"
             ],
             "defines": [],
             "compilerPath": "C:\\MinGW\\bin\\gcc",

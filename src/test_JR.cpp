@@ -2,13 +2,11 @@
 #include <opencv/cv.hpp>
 #include <opencv2/ximgproc.hpp>
 
-#include <pcl/point_types.h>
-#include <pcl/point_cloud.h>
-
-#include <boost/filesystem.hpp>
-#include <matcherJrsgm.h>
-
 #include <string>
+//#include <iostream>
+
+#include <matcherJrsgm.h>
+#include <iniReader.h>
 
 using namespace cv;
 
@@ -21,9 +19,6 @@ int _speckle_size, _speckle_range, _disp12MaxDiff;
 float _p1, _p2;
 bool _interp;
 std::string _jr_config_file = "";
-
-typedef pcl::PointCloud<pcl::PointXYZRGBNormal> PointCloudRGBNormal;
-typedef pcl::PointCloud<pcl::PointXYZRGB> PointCloudRGB;
 
 class CameraInfo
 {
@@ -78,83 +73,14 @@ Mat stereo_match(Mat left_image, Mat right_image, int algorithm, int min_dispari
 
   //disparity_range = disparity_range > 0 ? disparity_range : ((left_image.size().width / 8) + 15) & -16;
 
-  if (algorithm == CV_StereoBM)
+  MatcherJrSGM *matcher = new MatcherJrSGM(_jr_config_file);
+
+  matcher->compute(left_image, right_image, disp);
+
+  if (backwardMatch)
   {
-    cv::Ptr<cv::StereoBM> bm = cv::StereoBM::create(64, 9);
-
-    bm->setPreFilterCap(31);
-    bm->setPreFilterSize(15);
-    bm->setPreFilterType(1);
-    bm->setBlockSize(correlation_window_size > 0 ? correlation_window_size : 9);
-    bm->setMinDisparity(min_disparity);
-    bm->setNumDisparities(disparity_range);
-    bm->setTextureThreshold(texture_threshold);
-    bm->setUniquenessRatio(uniqueness_ratio);
-    bm->setSpeckleWindowSize(speckleSize);
-    bm->setSpeckleRange(speckelRange);
-    bm->setDisp12MaxDiff(disp12MaxDiff);
-
-    bm->compute(left_image, right_image, disp);
-
-    if (backwardMatch)
-    {
-      auto right_matcher = cv::ximgproc::createRightMatcher(bm);
-      right_matcher->compute(right_image, left_image, disparity_rl);
-      double wls_lambda = 8000;
-      double wls_sigma = 1.5;
-      cv::Ptr<cv::ximgproc::DisparityWLSFilter> wls_filter = cv::ximgproc::createDisparityWLSFilter(bm);
-      wls_filter->setLambda(wls_lambda);
-      wls_filter->setSigmaColor(wls_sigma);
-      wls_filter->filter(disp, left_image, disparity_filter, disparity_rl);
-      disp = disparity_filter;
-    }
-  }
-  else if (algorithm == CV_StereoSGBM)
-  {
-    cv::Ptr<cv::StereoSGBM> sgbm = cv::StereoSGBM::create(64, 9);
-
-    sgbm->setPreFilterCap(31);
-    sgbm->setBlockSize(correlation_window_size > 0 ? correlation_window_size : 9);
-    sgbm->setMinDisparity(min_disparity);
-    sgbm->setNumDisparities(disparity_range);
-    sgbm->setUniquenessRatio(uniqueness_ratio);
-    sgbm->setSpeckleWindowSize(speckleSize);
-    sgbm->setSpeckleRange(speckelRange);
-    sgbm->setDisp12MaxDiff(disp12MaxDiff);
-    sgbm->setP1(p1);
-    sgbm->setP2(p2);
-
-    sgbm->compute(left_image, right_image, disp);
-
-    if (backwardMatch)
-    {
-      auto right_matcher = cv::ximgproc::createRightMatcher(sgbm);
-      right_matcher->compute(right_image, left_image, disparity_rl);
-      double wls_lambda = 8000;
-      double wls_sigma = 1.5;
-      cv::Ptr<cv::ximgproc::DisparityWLSFilter> wls_filter = cv::ximgproc::createDisparityWLSFilter(sgbm);
-      wls_filter->setLambda(wls_lambda);
-      wls_filter->setSigmaColor(wls_sigma);
-      wls_filter->filter(disp, left_image, disparity_filter, disparity_rl);
-      disp = disparity_filter;
-    }
-  }
-  else if (algorithm == JR_StereoSGBM)
-  {
-    MatcherJrSGM *matcher = new MatcherJrSGM(_jr_config_file);
-    //matcher->setDisparityRange(disparity_range);
-    //matcher->setDisparityShift(min_disparity);
-    //matcher->setMatchCosts(p1, p2);
-    //matcher->setWindowSize(correlation_window_size);
-    //matcher->enableInterpolation(interp);
-
-    matcher->compute(left_image, right_image, disp);
-
-    if (backwardMatch)
-    {
-      matcher->backwardMatch(left_image, right_image, disparity_rl);
-      // TODO impliment backward matching filter for JR
-    }
+    matcher->backwardMatch(left_image, right_image, disparity_rl);
+    // TODO impliment backward matching filter for JR
   }
   return disp;
 }
@@ -217,16 +143,17 @@ void loadDisparityConfig(std::string disparity_config)
   _p2 = settings->value("Disparity", "P2", 1.21);
   _interp = settings->value("Disparity", "Interpolation", false);
   //only read jr config file if using jr stero matcher
-  if (_stereo_algorithm == 2){
-    _jr_config_file = settings->value("Disparity", "JR Config File", (std::string)"/home/i3dr/JRIntegration/example/JR_config/JR_matchingparam_without_interpolation.cfg");
+  if (_stereo_algorithm == 2)
+  {
+    _jr_config_file = settings->value("Disparity", "JR Config File", (std::string) "/home/i3dr/JRIntegration/example/JR_config/JR_matchingparam_without_interpolation.cfg");
     std::cout << "JR Config File: " << _jr_config_file << std::endl;
     if (_jr_config_file != "")
     {
-      if (!boost::filesystem::exists(_jr_config_file))
-      {
-        std::cerr << "Invalid filename for jr config file" << std::endl;
-        exit(EXIT_FAILURE);
-      }
+      //if (!boost::filesystem::exists(_jr_config_file))
+      //{
+      //  std::cerr << "Invalid filename for jr config file" << std::endl;
+      //  exit(EXIT_FAILURE);
+      //}
     }
   }
 }
@@ -290,6 +217,7 @@ int main(int argc, char **argv)
     std::cout << left_camera_info_yaml_path << std::endl;
     std::cout << right_camera_info_yaml_path << std::endl;
 
+    /* 
     if (!boost::filesystem::exists(disparity_config))
     {
       std::cerr << "Invalid filename for disparity config" << std::endl;
@@ -304,39 +232,43 @@ int main(int argc, char **argv)
       std::cerr << "Invalid filename for right camera info yaml" << std::endl;
       return -1;
     }
+   
     else
     {
-      loadDisparityConfig(disparity_config);
-      if (argc == 4)
+       */
+    loadDisparityConfig(disparity_config);
+    if (argc == 4)
+    {
+      return liveCapture(left_camera_info_yaml_path, right_camera_info_yaml_path);
+    }
+    else if (argc == 6)
+    {
+      std::string left_image_fn = argv[4];
+      std::string right_image_fn = argv[5];
+      std::cout << left_image_fn << std::endl;
+      std::cout << right_image_fn << std::endl;
+      /* 
+      if (!boost::filesystem::exists(left_image_fn))
       {
-        return liveCapture(left_camera_info_yaml_path, right_camera_info_yaml_path);
+        std::cerr << "Invalid filename for left image filepath" << std::endl;
       }
-      else if (argc == 6)
+      else if (!boost::filesystem::exists(right_image_fn))
       {
-        std::string left_image_fn = argv[4];
-        std::string right_image_fn = argv[5];
-        std::cout << left_image_fn << std::endl;
-        std::cout << right_image_fn << std::endl;
-        if (!boost::filesystem::exists(left_image_fn))
-        {
-          std::cerr << "Invalid filename for left image filepath" << std::endl;
-        }
-        else if (!boost::filesystem::exists(right_image_fn))
-        {
-          std::cerr << "Invalid filename for right image filepath" << std::endl;
-        }
-        else
-        {
-          return fromImages(left_camera_info_yaml_path, right_camera_info_yaml_path, left_image_fn, right_image_fn);
-        }
-        return -1;
+        std::cerr << "Invalid filename for right image filepath" << std::endl;
       }
       else
       {
-        std::cerr << "Invalid number of arguments. (MUST be 3 if running live or 5 if loading from file)" << std::endl;
-        std::cerr << "Format: ./test_JR DISPARITY_CONFIG_FILE LEFT_CAMERA_YAML RIGHT_CAMERA_YAML [optional]LEFT_IMAGE_FILE [optional]RIGHT_IMAGE_FILE" << std::endl;
-      }
+        */
+      return fromImages(left_camera_info_yaml_path, right_camera_info_yaml_path, left_image_fn, right_image_fn);
+      //}
+      return -1;
     }
+    else
+    {
+      std::cerr << "Invalid number of arguments. (MUST be 3 if running live or 5 if loading from file)" << std::endl;
+      std::cerr << "Format: ./test_JR DISPARITY_CONFIG_FILE LEFT_CAMERA_YAML RIGHT_CAMERA_YAML [optional]LEFT_IMAGE_FILE [optional]RIGHT_IMAGE_FILE" << std::endl;
+    }
+    //}
   }
   else
   {
