@@ -24,7 +24,7 @@
                 "D:/openCV/opencv-3.1.0/build/install/include"
             ],
             "defines": [],
-            "compilerPath": "C:\\MinGW\\bin\\gcc",
+            "compilerPath": "C:\\MinGW\\mingw32\\bin\\gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-x64"

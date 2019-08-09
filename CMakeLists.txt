@@ -6,12 +6,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 message(WARNING ${CMAKE_MODULE_PATH})
 find_package(Phobos REQUIRED)
 
-#find_package(PCL 1.2 REQUIRED)
-
 include_directories(
 	include
     ${Phobos_INCLUDE_DIRS}
-    ${PCL_INCLUDE_DIRS}
+    ${Opencv_INCLUDE_DIRS}
 )
 
 add_executable(
@@ -22,5 +20,4 @@ target_link_libraries(
 	test_JR
 	${Phobos_LIBRARIES}
     ${OpenCV_LIBRARIES}
-    ${PCL_LIBRARIES}
 )

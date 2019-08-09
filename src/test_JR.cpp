@@ -3,7 +3,6 @@
 #include <opencv2/ximgproc.hpp>
 
 #include <string>
-//#include <iostream>
 
 #include <matcherJrsgm.h>
 #include <iniReader.h>
