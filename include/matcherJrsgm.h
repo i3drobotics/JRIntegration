@@ -4,7 +4,7 @@
 #include <PhobosIntegration/PhobosIntegration.hpp>
 #include <iostream>
 
-class MatcherJrSGM{
+class MatcherJrSGM {
     public:
         MatcherJrSGM(std::string &sConfigFile){
             init(sConfigFile);

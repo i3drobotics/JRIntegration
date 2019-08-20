@@ -1,0 +1,23 @@
+[Common]
+3rd Party License = false
+Confirm Log Gui = never
+Log = (type=file,level=log,name=log)
+Parameter Gui = never
+Store Environment = false
+Version = false
+[Input]
+Calibration File = 
+Has Nodata = true
+Input Disparity Dir = disparities
+Nodata Value = -99999
+[Output]
+Mode = Depth image (floating point)
+Output Dir = depth
+Output Scale = -1
+Pattern = depth_%06d.tif
+[Pattern]
+File Digits = 6
+File Postfix = .tif
+File Prefix = disparity_
+[Process]
+Handle Missing Values = false

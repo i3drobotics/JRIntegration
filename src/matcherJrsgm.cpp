@@ -29,18 +29,17 @@ int MatcherJrSGM::getErrorDisparity(void)
 //compute disparity
 void MatcherJrSGM::compute(cv::Mat left_image, cv::Mat right_image, cv::Mat &disp)
 {
-  cv::Mat left_joint, right_joint;
   std::string sgm_log = "/home/i3dr/Desktop/sgm_log.txt";
   try
   {
     JR::Phobos::MatchStereo(matcher_handle,
                             left_image,
                             right_image,
-                            left_joint,
-                            right_joint,
+                            cv::Mat(),
+                            cv::Mat(),
                             disp,
                             sgm_log,
-                            JR::Phobos::e_logLog);
+                            JR::Phobos::e_logInfo);
   }
   catch (const std::exception &ex)
   {
@@ -57,11 +56,11 @@ void MatcherJrSGM::backwardMatch(cv::Mat left_image, cv::Mat right_image, cv::Ma
   JR::Phobos::MatchStereo(matcher_handle,
                           right_image,
                           left_image,
-                          left_joint,
-                          right_joint,
+                          cv::Mat(),
+                          cv::Mat(),
                           disp,
                           sgm_log,
-                          JR::Phobos::e_logLog);
+                          JR::Phobos::e_logInfo);
 }
 
 void MatcherJrSGM::setMatchCosts(float P1, float P2)

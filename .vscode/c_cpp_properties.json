@@ -4,7 +4,6 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/pcl-1.7",
                 "${workspaceFolder}/include",
                 "/usr/local/Phobos/include"
             ],
@@ -18,7 +17,6 @@
             "name": "Windows",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:/pcl/PCL 1.8.1",
                 "${workspaceFolder}/include",
                 "C:/Program Files/JOANNEUM RESEARCH/Phobos/include",
                 "D:/openCV/opencv-3.1.0/build/install/include"

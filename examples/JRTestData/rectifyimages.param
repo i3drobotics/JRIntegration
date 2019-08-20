@@ -1,0 +1,34 @@
+[Common]
+3rd Party License = false
+Confirm Log Gui = never
+Log = (type=file,level=log,name=log)
+Parameter Gui = never
+Store Environment = false
+Version = false
+[Input]
+Calibration File = calibration_files/multi_full.xml
+Camera UID 1 = Left
+Camera UID 2 = Right
+Input Dir 1 = original_images
+Input Dir 2 = original_images
+[Output]
+Calibration File of Rectified Images = 
+Output Calibration With Rectification = calibration_files\withrectification.xml
+Output Dir = rectified_images
+Output Pattern 1 = Rectified_Left_%06d.tif
+Output Pattern 2 = Rectified_Right_%06d.tif
+Size X = 0
+Size Y = 0
+[Pattern]
+File Digits 1 = 2
+File Digits 2 = 2
+File Postfix 1 = .bmp
+File Postfix 2 = .bmp
+File Prefix 1 = left_
+File Prefix 2 = right_
+[Process]
+Alpha = 0
+Interpolator = Lanczos4
+Mean Object Distance = 1
+Use Rectification From Calibration File = false
+Zero Disparity = false

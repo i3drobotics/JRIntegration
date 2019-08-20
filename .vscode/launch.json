@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "(gdb) Phobos Live (BM)",
             "type": "cppdbg",
@@ -147,6 +148,29 @@
             ]
         },
         {
+            "name": "(gdb) Deimos Live (JR)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/deimos/parameter_configs/disparity_JR.cfg",
+                "${workspaceFolder}/examples/deimos/calibration/cal2/left.yaml","${workspaceFolder}/examples/deimos/calibration/cal2/right.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "(gdb) Deimos Image File (JR)",
             "type": "cppdbg",
             "request": "launch",
@@ -170,5 +194,28 @@
                 }
             ]
         },
+        {
+            "name": "(gdb) JR Image File (JR)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_JR",
+            "args": ["${workspaceFolder}/examples/JRTestData/parameter_configs/disparity_JR.cfg","","",
+                "${workspaceFolder}/examples/JRTestData/rectified_images/Rectified_Left_000037.tif","${workspaceFolder}/examples/JRTestData/rectified_images/Rectified_Right_000037.tif"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "prerun",
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "avoidWindowsConsoleRedirection": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
     ]
 }

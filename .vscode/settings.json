@@ -47,7 +47,12 @@
         "utility": "cpp",
         "iomanip": "cpp",
         "string": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "*.ipp": "cpp",
+        "algorithm": "cpp",
+        "mutex": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp"
     },
     "cmake.configureOnOpen": false
 }

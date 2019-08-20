@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<calibration_file version="1">
+    <camera type="" device_uid="Left">
+        <image_size>1920 1200</image_size>
+        <components>1</components>
+        <minimum>0</minimum>
+        <maximum>255</maximum>
+    </camera>
+    <camera type="" device_uid="Right">
+        <image_size>1920 1200</image_size>
+        <components>1</components>
+        <minimum>0</minimum>
+        <maximum>255</maximum>
+    </camera>
+    <monocular_calib device_uid="Left">
+        <time>2017-Jan-12 11:50:02</time>
+        <focal_length>2094.8750151618 2094.8750151618</focal_length>
+        <principal_point>945.52535710328 590.90995996551</principal_point>
+        <skew>-1</skew>
+        <distortion>-0.061870400024529 -0.0078584019877821 8.5961054613629e-05 -0.00076167597999092 0.17155842198768 0 0 0 </distortion>
+        <focal_length_err>-1 -1</focal_length_err>
+        <principal_point_err>-1 -1</principal_point_err>
+        <distortion_err>-1</distortion_err>
+        <n_images>389</n_images>
+        <back_projection_err>-1</back_projection_err>
+        <rms_err>0.28045198060034</rms_err>
+    </monocular_calib>
+    <monocular_calib device_uid="Right">
+        <time>2017-Jan-12 11:50:02</time>
+        <focal_length>2099.2995279807 2099.2995279807</focal_length>
+        <principal_point>952.25808581355 582.36893156792</principal_point>
+        <skew>-1</skew>
+        <distortion>-0.065535076533665 -0.009308181824574 -0.00052765837712425 0.0018851663942344 0.22071477273852 0 0 0 </distortion>
+        <focal_length_err>-1 -1</focal_length_err>
+        <principal_point_err>-1 -1</principal_point_err>
+        <distortion_err>-1</distortion_err>
+        <n_images>389</n_images>
+        <back_projection_err>-1</back_projection_err>
+        <rms_err>0.28045198060034</rms_err>
+    </monocular_calib>
+    <stereo_calib device_uid_left="Left" device_uid_left_time="2017-Jan-12 11:50:02" device_uid_right="Right" device_uid_right_time="2017-Jan-12 11:50:02">
+        <time>2017-Jan-12 11:50:02</time>
+        <rotation>0.96503370538285 0.0059540343692941 -0.262058193823 -0.0061947150622463 0.99998080830858 -9.2302891406899e-05 0.26205261490842 0.0017124512417724 0.96505206830015 </rotation>
+        <translation>0.29332620362239 0.00027103061190115 0.032679152326108 </translation>
+        <rotation_err>-1 -1 -1 -1 -1 -1 -1 -1 -1 </rotation_err>
+        <translation_err>-1 -1 -1 </translation_err>
+        <back_projection_err>-1</back_projection_err>
+        <rms_err>0.28045198060034</rms_err>
+        <essential>6.2182039895146e-11 -7.4305977942101e-09 4.4580496988713e-06 -1.0307590864723e-08 -6.9975013790217e-11 -0.00012913456734554 4.9513639192e-06 0.00014713400169708 -0.010796789969737 </essential>
+        <fundamental>0.00027346231770491 -0.032678061031193 0.00026457503283629 -0.045330415222372 -0.00030773402552848 -0.29163889912666 -0.0020786259274063 0.29331896047082 4.3950935905804e-05 </fundamental>
+    </stereo_calib>
+</calibration_file>
